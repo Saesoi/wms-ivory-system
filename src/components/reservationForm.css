@@ -1,0 +1,34 @@
+.reservation-form{
+  background-color: var(--var-color-blue);
+  color: var(--var-color-white);
+  padding: 20px;
+  width: 100vw;
+  height: auto;
+}
+
+.reservation-title{
+  font-size: 0.675rem;
+  letter-spacing: 2px;
+  font-family: var(--var-font-montserrat);
+  font-weight: 600;
+}
+
+.reser-parent {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.reser-parent div{
+  background-color: var(--var-color-white);
+}
+
+.div3 {
+  grid-column: span 2 / span 2;
+}
+
+.div4 {
+  grid-column: span 2 / span 2;
+  grid-row-start: 3;
+}

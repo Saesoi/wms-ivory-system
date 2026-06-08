@@ -1,0 +1,95 @@
+.hero{
+  background: #0A0B0D;
+  background: linear-gradient(0deg,rgba(10, 11, 13, 1) 52%, rgba(13, 27, 42, 1) 100%);
+  width: 100vw;
+  height: auto;
+  padding: 70px 20px 40px;
+}
+
+.top-hero{
+  font-weight: 400;
+  font-size: 0.550rem;
+  letter-spacing: 5px;
+  font-family: var(--var-font-montserrat);
+  margin-bottom: 1.5em;
+}
+
+.title-hero{
+  color: var(--var-color-white);
+  font-size: 3rem;
+  letter-spacing: 2px;
+  line-height: 1;
+  font-family: var(--var-font-playfair);
+  font-weight: 900;
+}
+
+.desc-hero{
+  color: var(--var-color-gray);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.5;
+  font-family: var(--var-font-cormorant);
+  margin-top: 1.5em;
+}
+
+.buttons-hero{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 2em;
+}
+
+.buttons-hero button{
+  background-color: transparent;
+  color: var(--var-color-white);
+  border: 1px solid var(--var-color-white);
+  padding: 10px 20px;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  font-family: var(--var-font-montserrat);
+  font-weight: 600;
+}
+
+.buttons-hero button:first-child{
+  background-color: var(--var-color-gold);
+  border: none;
+  color: var(--var-color-black);
+}
+
+.buttons-hero button:nth-child(2){
+  background-color: transparent;
+  border: 0.1px solid var(--var-color-gold);
+  color: var(--var-color-white);
+}
+
+@media (min-width: 1280px) { 
+  .hero{
+    padding: 100px 80px 60px;
+
+  }
+
+  .top-hero{
+    font-size: 0.750rem;
+    letter-spacing: 5px;
+    margin-bottom: 1.5em;
+  }
+
+  .title-hero{
+    font-size: 6rem;
+    letter-spacing: 2px;
+    line-height: 1;
+  }
+
+  .desc-hero{
+    font-size: 1.25rem;
+    line-height: 1.5;
+    margin-top: 1.5em;
+    width: 50%;
+  }
+
+  .buttons-hero{
+    flex-direction: row;
+    gap: 20px;
+    margin-top: 2em;
+  } 
+}
