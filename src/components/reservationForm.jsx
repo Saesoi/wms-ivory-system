@@ -24,7 +24,7 @@ export default function ReservationForm() {
           </form>
         </div>
         <div class="div4">
-          <button>Submit</button>
+          <button>CHECK AVAILABILITY</button>
         </div>
        </div>
     </div>

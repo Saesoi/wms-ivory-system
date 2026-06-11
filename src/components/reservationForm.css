@@ -4,6 +4,8 @@
   padding: 20px;
   width: 100vw;
   height: auto;
+  border-bottom: 0.025px solid var(--var-color-gold);
+  border-top: 0.025px solid var(--var-color-gold);
 }
 
 .reservation-title{
@@ -20,9 +22,7 @@
   gap: 20px;
 }
 
-.reser-parent div{
-  background-color: var(--var-color-white);
-}
+
 
 .div3 {
   grid-column: span 2 / span 2;
@@ -31,4 +31,35 @@
 .div4 {
   grid-column: span 2 / span 2;
   grid-row-start: 3;
+}
+
+.reser-parent input{
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  border: 0.025px solid var(--var-color-gold);
+  background-color: var(--var-color-blue);
+  color: var(--var-color-white);
+}
+
+.reser-parent label{
+  font-size: 0.5rem;
+  letter-spacing: 2px;
+  font-family: var(--var-font-montserrat);
+  font-weight: 600;
+  color: var(--var-color-gold);
+}
+
+.reser-parent button{
+  background-color: var(--var-color-gold);
+  color: var(--var-color-blue);
+  border: none;
+  padding: 10px;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  font-family: var(--var-font-montserrat);
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
 }
