@@ -1,48 +1,42 @@
-.reservation-form{
+.reservation-form {
   background-color: var(--var-color-blue);
   color: var(--var-color-white);
   padding: 20px;
-  width: 100vw;
+  width: 100%;
   height: auto;
   border-bottom: 0.025px solid var(--var-color-gold);
   border-top: 0.025px solid var(--var-color-gold);
 }
 
-.reservation-title{
+.reservation-title {
   font-size: 0.675rem;
   letter-spacing: 2px;
   font-family: var(--var-font-montserrat);
   font-weight: 600;
 }
 
+/* MOBILE FIRST */
 .reser-parent {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 20px;
 }
 
-
-
 .div3 {
-  grid-column: span 2 / span 2;
+  grid-column: span 2;
 }
 
 .div4 {
-  grid-column: span 2 / span 2;
-  grid-row-start: 3;
+  grid-column: span 2;
 }
 
-.reser-parent input{
-  width: 100%;
-  height: 100%;
-  padding: 10px;
-  border: 0.025px solid var(--var-color-gold);
-  background-color: var(--var-color-blue);
-  color: var(--var-color-white);
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
-.reser-parent label{
+.reser-parent label {
   font-size: 0.5rem;
   letter-spacing: 2px;
   font-family: var(--var-font-montserrat);
@@ -50,7 +44,19 @@
   color: var(--var-color-gold);
 }
 
-.reser-parent button{
+.reser-parent input,
+.reser-parent select {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 0.025px solid var(--var-color-gold);
+  background-color: var(--var-color-blue);
+  color: var(--var-color-white);
+  font: inherit;
+  appearance: none;
+}
+
+.reser-parent button {
   background-color: var(--var-color-gold);
   color: var(--var-color-blue);
   border: none;
@@ -62,4 +68,28 @@
   cursor: pointer;
   width: 100%;
   height: 100%;
+}
+
+/* DESKTOP */
+@media (min-width: 1280px) {
+
+  .reservation-form {
+    padding: 20px 80px;
+  }
+
+  .reser-parent {
+    grid-template-columns: repeat(4, 1fr);
+    align-items: end;
+  }
+
+  .div1,
+  .div2,
+  .div3,
+  .div4 {
+    grid-column: auto;
+  }
+
+  .div4 button {
+    height: 100%;
+  }
 }
