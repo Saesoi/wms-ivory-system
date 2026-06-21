@@ -1,0 +1,68 @@
+.about-body{
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
+  justify-content: center;
+  padding: 40px 20px;
+  width: 100%;
+  height: auto;
+  background-color: var(--var-color-black);
+  gap: 10px; 
+  border-bottom: 0.1px solid var(--var-color-gold);
+}
+
+.body-mission-vision{
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(2, 1fr);
+  align-items: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.body-mission-vision div{
+  background-color: var(--var-color-blue);
+}
+
+.vision-mission{
+  border-bottom: 2px solid var(--var-color-gold);
+  color: white;
+  padding: 30px 20px;
+}
+
+.vm .title-eyebrow{
+  font-size: 0.785rem;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.vm .title-desc{
+  margin: 0;
+}
+
+@media (min-width: 1280px){
+  .about-body{
+    padding: 60px 80px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+  }
+
+  .body-mission-vision{
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+  }
+
+  .body-who-hero .title-eyebrow{
+    font-size: 0.65rem;
+  }
+
+  .body-who-hero .title-desc{
+    font-size: 1.3rem;
+    width: 90%;
+  }
+
+  .vision-mission{
+    padding: 50px 40px;
+  }
+}

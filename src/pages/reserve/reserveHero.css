@@ -1,0 +1,38 @@
+.about-hero{
+  background-color: var(--var-color-blue);
+  width: 100%;
+  height: auto;
+  padding: 40px 20px;
+  border-bottom: 0.1px solid var(--var-color-gold);
+}
+
+.about-right h1{
+  font-size: 7rem;
+  position: absolute;
+  top: 155px;
+  letter-spacing: 15px;
+  right: 0px;
+  color: var(--var-color-gold);
+  opacity: 0.055;
+  font-family: var(--var-font-bebas);
+}
+
+.hero-about .title-hero{
+  font-size: 2.3rem;
+}
+
+@media (min-width: 1280px){
+  .about-hero{
+    padding: 90px 80px;
+  }
+
+  .about-right h1{
+    font-size: 13rem;
+    letter-spacing: 20px;
+    top: 105px;
+  }
+
+  .hero-about .title-hero{
+    font-size: 3.7rem;
+  }
+}

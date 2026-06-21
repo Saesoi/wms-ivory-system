@@ -1,0 +1,60 @@
+.why-section{
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
+  justify-content: center;
+  padding: 40px 20px;
+  width: 100%;
+  height: auto;
+  background-color: var(--var-color-blue);
+  gap: 30px; 
+  border-bottom: 0.1px solid var(--var-color-gold);
+}
+
+.why-hero .title-hero{
+  font-size: 1.75rem;
+}
+
+.why-cards{
+  width: 100%;
+  height: auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.why-card{
+  background-color: var(--var-color-lightblue);
+  padding: 20px;
+  border: 0.1px solid rgba(201, 168, 75, 0.2);
+}
+
+.why-card .title-eyebrow{
+  font-size: 2.875rem;
+  opacity: 0.4;
+  letter-spacing: 0;
+  font-family: var(--var-font-bebas);
+  margin: 0;
+}
+
+.why-card .title-hero{
+  font-size: 1.4rem;
+  font-family: var(--var-font-playfair);
+}
+
+@media (min-width: 1280px){
+  .why-section{
+    padding: 60px 80px;
+    gap: 40px;
+  }
+
+  .why-hero .title-hero{
+    font-size: 3.75rem;
+  }
+
+  .why-cards{
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
+  }
+}

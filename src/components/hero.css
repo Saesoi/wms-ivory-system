@@ -6,7 +6,7 @@
   padding: 70px 20px 40px;
 }
 
-.top-hero{
+.title-eyebrow{
   font-weight: 400;
   font-size: 0.550rem;
   letter-spacing: 5px;
@@ -23,7 +23,7 @@
   font-weight: 900;
 }
 
-.desc-hero{
+.title-desc{
   color: var(--var-color-gray);
   font-size: 1rem;
   font-weight: 700;

@@ -1,0 +1,209 @@
+.contact {
+  padding: 2rem 1rem;
+  background: var(--var-color-black);
+}
+
+/* ====================
+   MOBILE FIRST
+==================== */
+
+.contact__container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+}
+
+.contact__heading {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+
+  margin-bottom: 2rem;
+}
+
+.contact__heading span {
+  width: 30px;
+  height: 1px;
+
+  background: var(--var-color-gold);
+}
+
+.contact__heading p {
+  color: var(--var-color-gold);
+
+  letter-spacing: 4px;
+  font-size: 0.75rem;
+
+  font-family: var(--var-font-montserrat);
+}
+
+.contact__item {
+  margin-bottom: 2rem;
+}
+
+.contact__item h4 {
+  margin-bottom: 0.75rem;
+
+  color: var(--var-color-gold);
+
+  letter-spacing: 3px;
+  font-size: 0.75rem;
+
+  font-family: var(--var-font-montserrat);
+}
+
+.contact__item p {
+  color: var(--var-color-white);
+
+  line-height: 1.8;
+  font-size: 1rem;
+
+  font-family: var(--var-font-playfair);
+}
+
+.contact__socials {
+  display: flex;
+  gap: 0.75rem;
+
+  margin-bottom: 2rem;
+}
+
+.contact__socials a {
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-decoration: none;
+
+  border: 1px solid rgba(201, 168, 75, 0.25);
+
+  color: var(--var-color-gold);
+
+  transition: all 0.3s ease;
+}
+
+.contact__socials a:hover {
+  background: var(--var-color-gold);
+  color: var(--var-color-black);
+
+  transform: translateY(-4px);
+}
+
+/* ====================
+   LEAFLET MAP
+==================== */
+
+.contact__map {
+  height: 300px;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(201, 168, 75, 0.15);
+}
+
+.contact__map .leaflet-container {
+  width: 100%;
+  height: 100%;
+}
+
+/* ====================
+   FORM
+==================== */
+
+.contact__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 0.75rem;
+
+  color: var(--var-color-gold);
+
+  letter-spacing: 3px;
+  font-size: 0.75rem;
+
+  font-family: var(--var-font-montserrat);
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 1rem;
+
+  background: rgba(255, 255, 255, 0.03);
+
+  border: 1px solid rgba(201, 168, 75, 0.15);
+
+  color: var(--var-color-white);
+
+  outline: none;
+
+  font-family: var(--var-font-montserrat);
+
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--var-color-gold);
+}
+
+.form-group textarea {
+  min-height: 220px;
+  resize: vertical;
+}
+
+.contact__form button {
+  padding: 1rem;
+
+  border: none;
+
+  background: var(--var-color-gold);
+  color: var(--var-color-black);
+
+  cursor: pointer;
+
+  letter-spacing: 4px;
+
+  font-weight: 600;
+  font-family: var(--var-font-montserrat);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.contact__form button:hover {
+  transform: translateY(-4px);
+
+  box-shadow:
+    0 10px 30px rgba(201, 168, 75, 0.25);
+}
+
+/* ====================
+   DESKTOP
+==================== */
+
+@media (min-width: 1280px) {
+  .contact {
+    padding: 5rem;
+  }
+
+  .contact__container {
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 5rem;
+  }
+
+  .contact__map {
+    height: 360px;
+  }
+}
