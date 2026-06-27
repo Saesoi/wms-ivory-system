@@ -10,6 +10,8 @@ import Reserve from './pages/reserve/reserve'
 import Events from './pages/events/events'
 import Contact from './pages/contact/contacts'
 import Auth from './components/login'
+import Profile from "./pages/profile/Profile";
+import Admin from "./pages/admin/Admin";
 
 
 createRoot(document.getElementById('root')).render(
@@ -22,6 +24,8 @@ createRoot(document.getElementById('root')).render(
         <Route path='/events' element={<Events/>}/>
         <Route path='/contact' element={<Contact/>}/>
         <Route path='/login' element={<Auth/>}/>
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/admin" element={<Admin />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,

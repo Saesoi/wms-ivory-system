@@ -1,15 +1,54 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import "./reserveForm.css";
 
 export default function Reservation() {
   const [activeTab, setActiveTab] = useState("table");
 
+  const [searchParams] =
+  useSearchParams();
+
+  const dateParam =
+    searchParams.get("date");
+
+  const guestsParam =
+    searchParams.get("guests");
+
+  const timeParam =
+    searchParams.get("time");
+
   const [reservation, setReservation] = useState({
-    date: "2026-06-20",
-    time: "5:00 PM",
-    guests: "1-2 guests",
+    date:
+      dateParam || "2026-06-20",
+
+    time:
+      timeParam === "0"
+        ? "5:00 PM"
+        : timeParam === "1"
+        ? "6:00 PM"
+        : timeParam === "2"
+        ? "7:00 PM"
+        : timeParam === "3"
+        ? "8:00 PM"
+        : timeParam === "4"
+        ? "9:00 PM"
+        : timeParam === "5"
+        ? "10:00 PM"
+        : "5:00 PM",
+
+    guests:
+      guestsParam === "1"
+        ? "1-2 guests"
+        : guestsParam === "2"
+        ? "3-4 guests"
+        : guestsParam === "3"
+        ? "5-6 guests"
+        : guestsParam === "4"
+        ? "7+ guests"
+        : "1-2 guests",
+
     table: "No preference",
-    agree: false,
+    agree: false
   });
 
   const [occasion, setOccasion] = useState({
@@ -53,6 +92,49 @@ export default function Reservation() {
       year: "numeric",
     });
   };
+
+  const submitReservation = async (payload) => {
+  console.log("Submitting reservation...");
+  console.log(payload);
+  const user = JSON.parse(
+    localStorage.getItem("user")
+  );
+
+  if (!user) {
+    alert("Please login first");
+    return;
+  }
+
+  try {
+
+    const response = await fetch(
+      "http://localhost/api/create_reservation.php",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          user_id: user.id,
+          status: "Pending",
+          ...payload
+        }),
+      }
+    );
+
+    const data = await response.json();
+
+    console.log("Server response:", data);
+
+    alert(data.message);
+
+  } catch (err) {
+
+    console.error(err);
+    alert("Error creating reservation");
+
+  }
+};
 
   return (
     <section className="reservation-container">
@@ -127,7 +209,23 @@ export default function Reservation() {
               <p>I agree to the terms.</p>
             </div>
 
-            <button className="confirm-btn">CONFIRM RESERVATION</button>
+            <button
+              className="confirm-btn"
+              onClick={() =>
+                submitReservation({
+                  reservation_type: "table",
+                  reservation_date: reservation.date,
+                  reservation_time: reservation.time,
+                  guest_count: reservation.guests,
+                  table_preference: reservation.table,
+                  occasion_type: "",
+                  event_description: "",
+                  special_requests: ""
+                })
+              }
+            >
+              CONFIRM RESERVATION
+            </button>
           </>
         )}
 
@@ -179,7 +277,23 @@ export default function Reservation() {
               <textarea name="request" value={occasion.request} onChange={handleOccasionChange} />
             </div>
 
-            <button className="confirm-btn">CONFIRM EVENT</button>
+            <button
+              className="confirm-btn"
+              onClick={() =>
+                submitReservation({
+                  reservation_type: "occasion",
+                  reservation_date: occasion.date,
+                  reservation_time: occasion.time,
+                  guest_count: occasion.guests,
+                  table_preference: "",
+                  occasion_type: occasion.type,
+                  event_description: occasion.description,
+                  special_requests: occasion.request
+                })
+              }
+            >
+              CONFIRM EVENT
+            </button>
           </>
         )}
 
@@ -206,7 +320,23 @@ export default function Reservation() {
               <textarea name="description" value={venue.description} onChange={handleVenueChange} />
             </div>
 
-            <button className="confirm-btn">REQUEST VENUE</button>
+            <button
+              className="confirm-btn"
+              onClick={() =>
+                submitReservation({
+                  reservation_type: "venue",
+                  reservation_date: venue.date,
+                  reservation_time: "",
+                  guest_count: venue.guests,
+                  table_preference: "",
+                  occasion_type: "",
+                  event_description: venue.description,
+                  special_requests: ""
+                })
+              }
+            >
+              REQUEST VENUE
+            </button>
           </>
         )}
       </div>

@@ -16,7 +16,7 @@ export default function Footer(){
           <p>CONTACT INFO</p>
           <div>
             <img src={Pin} alt="" />
-            <p>Quezon City, Metro Manila, Philippines</p>
+            <p>1 M. Almeda Street, Pasig City, Philippines 1601</p>
           </div>
           <div>
             <img src={Phone} alt="" />
@@ -32,7 +32,12 @@ export default function Footer(){
           </div>
         </div>
         <div className='footer-media'>
-          <button>RESERVE A TABLE</button>
+          <button
+                className="btn-primary"
+                onClick={() => window.location.href = "/reserve"}
+              >
+                Reserve a Table
+              </button>
           <p>FOLLOW US</p>
           <div className='social-media'>
             <a href="">f</a>

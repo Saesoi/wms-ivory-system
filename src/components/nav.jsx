@@ -1,9 +1,49 @@
 import "./nav.css";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Nav() {
   const [isOpen, setIsOpen] = useState(false);
+
+  const [user, setUser] = useState(null);
+
+  const [loading, setLoading] =
+  useState(true);
+
+  const [notifications,
+    setNotifications] =
+    useState([]);
+
+  const [showNotif,
+    setShowNotif] =
+    useState(false);
+
+  const unreadCount =
+  notifications.filter(
+    n => n.is_read == 0
+  ).length;
+
+  useEffect(() => {
+    const storedUser =
+      JSON.parse(
+        localStorage.getItem("user")
+      );
+
+    setUser(storedUser);
+
+    setLoading(false);
+
+    if(!storedUser) return;
+
+    fetch(
+      `http://localhost/api/get_notifications.php?user_id=${storedUser.id}`
+    )
+    .then(res => res.json())
+    .then(data => {
+      setNotifications(data);
+    });
+
+  }, []);
 
   return (
     <nav className="nav">
@@ -32,16 +72,85 @@ export default function Nav() {
 
       {/* RIGHT */}
       <div className="nav-right">
-        <Link to="/login" className="login-link">
-          <button className="login-btn">Login</button>
-        </Link>
+        {loading ? null : !user ? (
+          <Link
+            to="/login"
+            className="login-link"
+          >
+            <button className="login-btn">
+              Login
+            </button>
+          </Link>
+        ) : (
+          <>
+          <div className="notif-wrap">
+              <button
+                className="icon-btn"
+                onClick={() =>
+                  setShowNotif(!showNotif)
+                }
+              >
+                🔔
+                {unreadCount > 0 && (
+                  <span
+                    className="notif-badge"
+                  >
+                    {unreadCount}
+                  </span>
+                )}
+              </button>
+              {showNotif && (
+                <div className="notif-dropdown">
+                  <div className="notif-header">
+                    Notifications
+                  </div>
+                  {notifications.length === 0 ? (
+                    <div className="notif-item">
+                      No notifications yet.
+                    </div>
+                  ) : (
+                    notifications.map((n) => (
+                      <div
+                        key={n.id}
+                        className={`notif-item ${
+                          !n.is_read
+                            ? "unread"
+                            : ""
+                        }`}
+                      >
 
-        <img
-          className="hamburger"
-          src="/src/assets/hamburger.png"
-          alt="Hamburger Menu"
-          onClick={() => setIsOpen(!isOpen)}
-        />
+                        <div className="notif-item-title">
+                          {n.title}
+                        </div>
+
+                        <div className="notif-item-time">
+                          {n.created_at}
+                        </div>
+
+                      </div>
+
+                    ))
+
+                  )}
+                                  </div>
+              )}
+            </div>
+            <Link
+              to={
+                user.role === "admin"
+                  ? "/admin"
+                  : "/profile"
+              }
+            >
+              <button
+                className="icon-btn"
+                title="Profile"
+              >
+                👤
+              </button>
+            </Link>
+          </>
+        )}
       </div>
 
       {/* Mobile Dropdown */}

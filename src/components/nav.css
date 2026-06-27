@@ -18,8 +18,9 @@
   align-items: center;
 
   padding: 15px;
-  position: relative;
-  z-index: 1000;
+  position: sticky;
+  top: 0;
+  z-index: 9999;
 }
 
 /* =========================
@@ -77,6 +78,30 @@
   align-items: center;
   gap: 15px;
 }
+
+.icon-btn {
+  width: 38px;
+  height: 38px;
+
+  background: transparent;
+
+  border: 1px solid
+    rgba(201,168,76,0.3);
+
+  color: var(--var-color-gold);
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 16px;
+
+  border-radius: 50%;
+}
+
+.icon-btn:hover { background: rgba(201,168,76,0.1); }
 
 /* LOGIN BUTTON (NOW LINK) */
 .login-btn {
@@ -170,4 +195,47 @@
   .mobile-menu {
     display: none;
   }
+}
+
+.notif-dropdown {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  width: 340px;
+  background: var(--navy-mid);
+  border: 1px solid rgba(201,168,76,0.2);
+  z-index: 2000;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+.notif-dropdown.show { display: block; }
+.notif-header {
+  padding: 16px 20px; border-bottom: 1px solid rgba(201,168,76,0.1);
+  font-family: 'Bebas Neue', sans-serif; font-size: 13px; letter-spacing: 3px; color: var(--gold);
+}
+.notif-item {
+  padding: 16px 20px; border-bottom: 1px solid rgba(255,255,255,0.04);
+  cursor: pointer; transition: background 0.15s;
+}
+.notif-item:hover { background: rgba(255,255,255,0.03); }
+.notif-item.unread { border-left: 2px solid var(--gold); }
+.notif-item-title { font-size: 13px; margin-bottom: 4px; }
+.notif-item-time { font-size: 11px; color: var(--gray); }
+
+.notif-wrap { position: relative; }
+
+.notif-badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  background: var(--gold);
+  color: var(--dark);
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  font-weight: 700;
 }

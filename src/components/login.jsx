@@ -5,6 +5,90 @@ import "./login.css";
 export default function Auth() {
   const [isLogin, setIsLogin] = useState(true);
 
+  const [fullname, setFullname] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+const handleSignup = async (e) => {
+  e.preventDefault();
+
+  if (password !== confirmPassword) {
+    alert("Passwords do not match");
+    return;
+  }
+
+  try {
+    const response = await fetch(
+      "http://localhost/api/register.php",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          fullname,
+          email,
+          password,
+        }),
+      }
+    );
+
+    const data = await response.json();
+
+    alert(data.message);
+
+  } catch (error) {
+    console.error(error);
+    alert("Error connecting to server");
+  }
+};
+
+const handleLogin = async (e) => {
+  e.preventDefault();
+
+  try {
+    const response = await fetch(
+      "http://localhost/api/login.php",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      }
+    );
+
+    const data = await response.json();
+
+    if (data.success) {
+
+      localStorage.setItem(
+        "user",
+        JSON.stringify(data.user)
+      );
+
+      alert("Login successful!");
+
+      if (data.user.role === "admin") {
+        window.location.href = "/admin";
+      } else {
+        window.location.href = "/profile";
+      }
+
+    } else {
+      alert(data.message);
+    }
+
+  } catch (error) {
+    console.error(error);
+    alert("Error connecting to server");
+  }
+};
+
   return (
     <section className="auth">
       <div className="auth__container">
@@ -29,7 +113,10 @@ export default function Auth() {
           </p>
         </div>
 
-        <form className="auth__form">
+        <form
+            className="auth__form"
+            onSubmit={isLogin ? handleLogin : handleSignup}
+          >
 
           {!isLogin && (
             <div className="form-group">
@@ -37,6 +124,8 @@ export default function Auth() {
               <input
                 type="text"
                 placeholder="Juan Dela Cruz"
+                value={fullname}
+                onChange={(e) => setFullname(e.target.value)}
               />
             </div>
           )}
@@ -46,6 +135,8 @@ export default function Auth() {
             <input
               type="email"
               placeholder="your@email.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
 
@@ -54,6 +145,8 @@ export default function Auth() {
             <input
               type="password"
               placeholder="••••••••"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
 
@@ -63,6 +156,8 @@ export default function Auth() {
               <input
                 type="password"
                 placeholder="••••••••"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
               />
             </div>
           )}

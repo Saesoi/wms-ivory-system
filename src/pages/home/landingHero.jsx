@@ -18,8 +18,18 @@ export default function LandingHero() {
         }
       />
       <div className='buttons-hero'>
-        <button>RESERVE NOW</button>
-        <button>BOOK AN EVENT</button>
+        <button
+          className="btn-primary"
+          onClick={() => window.location.href = "/reserve"}
+        >
+          RESERVE NOW
+        </button>
+        <button
+          className="btn-primary"
+          onClick={() => window.location.href = "/reserve"}
+        >
+          BOOK AN EVENT
+        </button>
       </div>
     </div>
   )
