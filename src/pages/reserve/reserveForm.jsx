@@ -4,6 +4,7 @@ import "./reserveForm.css";
 
 export default function Reservation() {
   const [activeTab, setActiveTab] = useState("table");
+  const [paymentProof, setPaymentProof] = useState(null);
 
   const [searchParams] =
   useSearchParams();
@@ -105,20 +106,32 @@ export default function Reservation() {
     return;
   }
 
+  if (!paymentProof) {
+    alert("Please upload your proof of payment.");
+    return;
+  }
+
   try {
+
+    const formData = new FormData();
+
+    // User data
+    formData.append("user_id", user.id);
+    formData.append("status", "Pending");
+
+    // Reservation details
+    Object.keys(payload).forEach((key) => {
+      formData.append(key, payload[key]);
+    });
+
+    // Uploaded payment proof
+    formData.append("payment_proof", paymentProof);
 
     const response = await fetch(
       "/api/create_reservation.php",
       {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          user_id: user.id,
-          status: "Pending",
-          ...payload
-        }),
+        body: formData,
       }
     );
 
@@ -202,6 +215,22 @@ export default function Reservation() {
                 <option>VIP Area</option>
                 <option>Outdoor</option>
               </select>
+            </div>
+
+            <div className="field">
+              <label>PROOF OF DOWNPAYMENT (MINIMUM ₱1,000)</label>
+
+              <input
+                type="file"
+                accept="image/*"
+                onChange={(e) =>
+                  setPaymentProof(e.target.files[0])
+                }
+              />
+
+              <small className="upload-note">
+                Upload your GCash, Maya, Bank Transfer, or other payment receipt.
+              </small>
             </div>
 
             <div className="terms">
