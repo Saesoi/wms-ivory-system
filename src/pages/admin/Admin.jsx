@@ -574,7 +574,6 @@ export default function Admin() {
           className="dash-nav-item"
           style={{
             marginTop: "auto",
-            position: "absolute",
             bottom: "20px",
             width: "220px"
           }}
