@@ -37,7 +37,7 @@ export default function Profile() {
     ) return;
     try {
       const response = await fetch(
-        "http://localhost/api/cancel_reservation.php",
+        "/api/cancel_reservation.php",
         {
           method: "POST",
           headers: {
@@ -73,7 +73,7 @@ export default function Profile() {
     if(user){
 
       fetch(
-        `http://localhost/api/get_user_bookings.php?user_id=${user.id}`
+        `/api/get_user_bookings.php?user_id=${user.id}`
       )
       .then(res => res.json())
       .then(data => {

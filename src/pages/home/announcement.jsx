@@ -11,7 +11,7 @@ export default function Announcement() {
 
   useEffect(() => {
     fetch(
-      "http://localhost/api/get_announcements.php"
+      "/api/get_announcements.php"
     )
       .then((res) => res.json())
       .then((data) => {

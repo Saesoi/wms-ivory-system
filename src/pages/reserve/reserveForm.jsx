@@ -108,7 +108,7 @@ export default function Reservation() {
   try {
 
     const response = await fetch(
-      "http://localhost/api/create_reservation.php",
+      "/api/create_reservation.php",
       {
         method: "POST",
         headers: {

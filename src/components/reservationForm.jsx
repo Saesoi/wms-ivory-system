@@ -18,7 +18,7 @@ export default function ReservationForm() {
     try {
 
       const response = await fetch(
-        `http://localhost/api/check_capacity.php?date=${date}`
+        `/api/check_capacity.php?date=${date}`
       );
 
       const data =

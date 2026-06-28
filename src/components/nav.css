@@ -1,15 +1,23 @@
-/* =========================
-   BASE
-========================= */
+/* =====================================
+   GLOBAL
+===================================== */
 
 .gold {
   color: var(--var-color-gold);
 }
 
+.gray {
+  color: gray;
+}
+
+/* =====================================
+   NAVBAR
+===================================== */
+
 .nav {
-  background-color: var(--var-color-black);
   width: 100%;
   min-height: 70px;
+  background: var(--var-color-black);
   color: white;
   border-bottom: 1px solid var(--var-color-gold);
 
@@ -18,14 +26,15 @@
   align-items: center;
 
   padding: 15px;
+
   position: sticky;
   top: 0;
   z-index: 9999;
 }
 
-/* =========================
+/* =====================================
    LEFT
-========================= */
+===================================== */
 
 .nav-left {
   display: flex;
@@ -37,145 +46,273 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
+  object-fit: cover;
 }
 
 .nav-title {
-  letter-spacing: 3px;
-  font-size: 1rem;
   font-family: var(--var-font-bebas);
+  font-size: 1rem;
+  letter-spacing: 3px;
 }
 
 .small-text {
-  font-size: 0.5rem;
-  letter-spacing: 3px;
   font-family: var(--var-font-bebas);
+  font-size: .5rem;
+  letter-spacing: 3px;
 }
 
-/* =========================
-   MIDDLE LINKS
-========================= */
+/* =====================================
+   CENTER NAVIGATION
+===================================== */
 
 .nav-mid {
   display: none;
 }
 
 .nav-mid a {
-  text-decoration: none;
   color: white;
-  transition: 0.3s ease;
+  text-decoration: none;
+  transition: .3s;
 }
 
 .nav-mid a:hover {
   color: var(--var-color-gold);
 }
 
-/* =========================
+/* =====================================
    RIGHT
-========================= */
+===================================== */
 
 .nav-right {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 12px;
 }
+
+/* =====================================
+   BUTTONS
+===================================== */
 
 .icon-btn {
   width: 38px;
   height: 38px;
 
+  border-radius: 50%;
+  border: 1px solid rgba(201,168,76,.3);
+
   background: transparent;
-
-  border: 1px solid
-    rgba(201,168,76,0.3);
-
   color: var(--var-color-gold);
 
   cursor: pointer;
 
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 
   font-size: 16px;
 
-  border-radius: 50%;
+  transition: .25s;
 }
 
-.icon-btn:hover { background: rgba(201,168,76,0.1); }
+.icon-btn:hover {
+  background: rgba(201,168,76,.1);
+}
 
-/* LOGIN BUTTON (NOW LINK) */
+/* =====================================
+   LOGIN BUTTON
+===================================== */
+
+.login-link {
+  text-decoration: none;
+}
+
 .login-btn {
   display: none;
+
   padding: 10px 18px;
+
+  background: transparent;
+
   border: 1px solid var(--var-color-gold);
-  color: var(--var-color-black);
-  text-decoration: none;
+
+  color: var(--var-color-gold);
+
   text-transform: uppercase;
   letter-spacing: 2px;
-  font-size: 12px;
-  transition: 0.3s ease;
+
+  cursor: pointer;
+
+  transition: .3s;
 }
 
 .login-btn:hover {
   background: var(--var-color-gold);
-  color: var(--var-color-white);
+  color: black;
 }
 
-/* HAMBURGER */
+/* =====================================
+   HAMBURGER
+===================================== */
+
 .hamburger {
-  width: 35px;
-  height: 35px;
+  width: 34px;
+  height: 34px;
+
   cursor: pointer;
+
+  display: block;
 }
 
-/* =========================
+/* =====================================
    MOBILE MENU
-========================= */
+===================================== */
 
 .mobile-menu {
   position: absolute;
+
   top: 100%;
   left: 0;
 
   width: 100%;
+
   background: #111;
 
   display: flex;
   flex-direction: column;
 
-  max-height: 0;
   overflow: hidden;
 
-  transition: max-height 0.3s ease;
-}
+  max-height: 0;
 
-.mobile-menu a {
-  padding: 15px 20px;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-  text-decoration: none;
-  color: white;
+  transition: max-height .3s ease;
 }
 
 .mobile-menu.show {
-  max-height: 400px;
+  max-height: 500px;
 }
 
-/* =========================
+.mobile-menu a {
+  padding: 16px 20px;
+
+  color: white;
+  text-decoration: none;
+
+  border-bottom: 1px solid rgba(255,255,255,.08);
+
+  transition: .2s;
+}
+
+.mobile-menu a:hover {
+  background: rgba(255,255,255,.05);
+  color: var(--var-color-gold);
+}
+
+/* =====================================
+   NOTIFICATIONS
+===================================== */
+
+.notif-wrap {
+  position: relative;
+}
+
+.notif-badge {
+  position: absolute;
+
+  top: -3px;
+  right: -3px;
+
+  width: 16px;
+  height: 16px;
+
+  border-radius: 50%;
+
+  background: var(--var-color-gold);
+  color: black;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 9px;
+  font-weight: bold;
+}
+
+.notif-dropdown {
+  position: absolute;
+
+  right: 0;
+  top: calc(100% + 10px);
+
+  width: 340px;
+
+  background: #1a1a1a;
+
+  border: 1px solid rgba(201,168,76,.2);
+
+  box-shadow: 0 20px 50px rgba(0,0,0,.45);
+
+  z-index: 9999;
+}
+
+.notif-header {
+  padding: 16px 20px;
+
+  border-bottom: 1px solid rgba(201,168,76,.15);
+
+  font-family: var(--var-font-bebas);
+
+  letter-spacing: 3px;
+
+  color: var(--var-color-gold);
+}
+
+.notif-item {
+  padding: 16px 20px;
+
+  border-bottom: 1px solid rgba(255,255,255,.05);
+
+  cursor: pointer;
+
+  transition: .2s;
+}
+
+.notif-item:hover {
+  background: rgba(255,255,255,.04);
+}
+
+.notif-item.unread {
+  border-left: 3px solid var(--var-color-gold);
+}
+
+.notif-item-title {
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+.notif-item-time {
+  font-size: 11px;
+  color: gray;
+}
+
+/* =====================================
    DESKTOP
-========================= */
+===================================== */
 
 @media (min-width: 1280px) {
+
   .nav {
     display: grid;
     grid-template-columns: 1fr auto 1fr;
+
     align-items: center;
-     padding: 22px 60px;
+
+    padding: 22px 60px;
   }
 
   .nav-mid {
     display: flex;
-    gap: 30px;
     justify-content: center;
+    gap: 32px;
   }
 
   .nav-right {
@@ -185,7 +322,6 @@
   .login-btn {
     display: inline-block;
     width: 100%;
-    color: black;
   }
 
   .hamburger {
@@ -195,47 +331,5 @@
   .mobile-menu {
     display: none;
   }
-}
 
-.notif-dropdown {
-  position: absolute;
-  right: 0;
-  top: calc(100% + 8px);
-  width: 340px;
-  background: var(--navy-mid);
-  border: 1px solid rgba(201,168,76,0.2);
-  z-index: 2000;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-}
-
-.notif-dropdown.show { display: block; }
-.notif-header {
-  padding: 16px 20px; border-bottom: 1px solid rgba(201,168,76,0.1);
-  font-family: 'Bebas Neue', sans-serif; font-size: 13px; letter-spacing: 3px; color: var(--gold);
-}
-.notif-item {
-  padding: 16px 20px; border-bottom: 1px solid rgba(255,255,255,0.04);
-  cursor: pointer; transition: background 0.15s;
-}
-.notif-item:hover { background: rgba(255,255,255,0.03); }
-.notif-item.unread { border-left: 2px solid var(--gold); }
-.notif-item-title { font-size: 13px; margin-bottom: 4px; }
-.notif-item-time { font-size: 11px; color: var(--gray); }
-
-.notif-wrap { position: relative; }
-
-.notif-badge {
-  position: absolute;
-  top: -2px;
-  right: -2px;
-  background: var(--gold);
-  color: var(--dark);
-  border-radius: 50%;
-  width: 16px;
-  height: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 9px;
-  font-weight: 700;
 }

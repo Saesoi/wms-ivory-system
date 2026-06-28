@@ -3,10 +3,10 @@
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: *");
 
-$host = "localhost";
-$user = "root";
-$password = "";
-$database = "room_reservation";
+$host = "sql110.infinityfree.com";
+$user = "if0_42284742";
+$password = "ZfWmnREYsjex";
+$database = "if0_42284742_wms_ivory";
 
 $conn = new mysqli(
     $host,

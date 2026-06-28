@@ -61,7 +61,7 @@ export default function Admin() {
   useEffect(() => {
 
     fetch(
-      "http://localhost/api/get_all_reservations.php"
+      "/api/get_all_reservations.php"
     )
       .then((response) => response.json())
       .then((data) => {
@@ -71,7 +71,7 @@ export default function Admin() {
         console.error(error);
       });
     fetch(
-      "http://localhost/api/get_tables.php"
+      "/api/get_tables.php"
     )
       .then((response) => response.json())
       .then((data) => {
@@ -81,7 +81,7 @@ export default function Admin() {
         console.error(error);
       });
     fetch(
-      "http://localhost/api/get_customers.php"
+      "/api/get_customers.php"
     )
       .then((response) =>
         response.json()
@@ -93,7 +93,7 @@ export default function Admin() {
         console.error(error);
       });
     fetch(
-      "http://localhost/api/get_announcements.php"
+      "/api/get_announcements.php"
     )
       .then((res) => res.json())
       .then((data) => {
@@ -108,7 +108,7 @@ export default function Admin() {
 
     });
     fetch(
-      "http://localhost/api/get_capacity_settings.php"
+      "/api/get_capacity_settings.php"
     )
       .then((res) => res.json())
       .then((data) => {
@@ -124,7 +124,7 @@ export default function Admin() {
       try {
 
         const response = await fetch(
-          "http://localhost/api/update_reservation_status.php",
+          "/api/update_reservation_status.php",
           {
             method: "POST",
 
@@ -176,7 +176,7 @@ export default function Admin() {
       try {
 
         const response = await fetch(
-          "http://localhost/api/delete_reservation.php",
+          "/api/delete_reservation.php",
           {
             method: "POST",
 
@@ -213,7 +213,7 @@ export default function Admin() {
 
   const addTable = () => {
     fetch(
-      "http://localhost/api/add_table.php",
+      "/api/add_table.php",
       {
         method: "POST",
         headers: {
@@ -229,7 +229,7 @@ export default function Admin() {
       .then(() => {
 
         fetch(
-        "http://localhost/api/get_tables.php"
+        "/api/get_tables.php"
         )
         .then((res) => res.json())
         .then((data) => {
@@ -247,7 +247,7 @@ export default function Admin() {
   ) return;
 
   fetch(
-    `http://localhost/api/delete_table.php?id=${id}`
+    `/api/delete_table.php?id=${id}`
     )
     .then(res => res.json())
     .then(() => {
@@ -261,7 +261,7 @@ export default function Admin() {
 
   const updateTable = () => {
     fetch(
-      "http://localhost/api/update_table.php",
+      "/api/update_table.php",
       {
         method: "POST",
         headers: {
@@ -278,7 +278,7 @@ export default function Admin() {
     .then(() => {
 
       fetch(
-      "http://localhost/api/get_tables.php"
+      "/api/get_tables.php"
       )
       .then((res) => res.json())
       .then((data) => {
@@ -293,7 +293,7 @@ export default function Admin() {
 
   const saveCapacity = () => {
     fetch(
-      "http://localhost/api/save_capacity.php",
+      "/api/save_capacity.php",
       {
         method: "POST",
 
@@ -319,7 +319,7 @@ export default function Admin() {
   const loadCapacity = (date) => {
 
     fetch(
-      `http://localhost/api/get_capacity.php?date=${date}`
+      `/api/get_capacity.php?date=${date}`
     )
     .then(res => res.json())
     .then(data => {
@@ -349,7 +349,7 @@ export default function Admin() {
 
   const addAnnouncement = (status) => {
     fetch(
-      "http://localhost/api/add_announcement.php",
+      "/api/add_announcement.php",
       {
         method: "POST",
         headers: {
@@ -396,7 +396,7 @@ export default function Admin() {
   try {
 
     const response = await fetch(
-      "http://localhost/api/delete_announcement.php",
+      "/api/delete_announcement.php",
       {
         method: "POST",
         headers: {
@@ -428,7 +428,7 @@ export default function Admin() {
     const updateAnnouncement = () => {
 
       fetch(
-        "http://localhost/api/update_announcement.php",
+        "/api/update_announcement.php",
         {
           method: "POST",
           headers: {
@@ -448,7 +448,7 @@ export default function Admin() {
         if(data.success){
 
           fetch(
-            "http://localhost/api/get_announcements.php"
+            "/api/get_announcements.php"
           )
           .then(res => res.json())
           .then(data => {

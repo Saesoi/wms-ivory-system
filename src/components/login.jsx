@@ -1,8 +1,10 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./login.css";
 
 export default function Auth() {
+  const navigate = useNavigate();
+
   const [isLogin, setIsLogin] = useState(true);
 
   const [fullname, setFullname] = useState("");
@@ -10,18 +12,16 @@ export default function Auth() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-const handleSignup = async (e) => {
-  e.preventDefault();
+  const handleSignup = async (e) => {
+    e.preventDefault();
 
-  if (password !== confirmPassword) {
-    alert("Passwords do not match");
-    return;
-  }
+    if (password !== confirmPassword) {
+      alert("Passwords do not match");
+      return;
+    }
 
-  try {
-    const response = await fetch(
-      "http://localhost/api/register.php",
-      {
+    try {
+      const response = await fetch("/api/register.php", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -31,26 +31,31 @@ const handleSignup = async (e) => {
           email,
           password,
         }),
+      });
+
+      const data = await response.json();
+
+      alert(data.message);
+
+      if (data.success) {
+        setIsLogin(true);
+
+        setFullname("");
+        setEmail("");
+        setPassword("");
+        setConfirmPassword("");
       }
-    );
+    } catch (error) {
+      console.error(error);
+      alert("Error connecting to server");
+    }
+  };
 
-    const data = await response.json();
+  const handleLogin = async (e) => {
+    e.preventDefault();
 
-    alert(data.message);
-
-  } catch (error) {
-    console.error(error);
-    alert("Error connecting to server");
-  }
-};
-
-const handleLogin = async (e) => {
-  e.preventDefault();
-
-  try {
-    const response = await fetch(
-      "http://localhost/api/login.php",
-      {
+    try {
+      const response = await fetch("/api/login.php", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -59,35 +64,28 @@ const handleLogin = async (e) => {
           email,
           password,
         }),
-      }
-    );
+      });
 
-    const data = await response.json();
+      const data = await response.json();
 
-    if (data.success) {
+      if (data.success) {
+        localStorage.setItem("user", JSON.stringify(data.user));
 
-      localStorage.setItem(
-        "user",
-        JSON.stringify(data.user)
-      );
+        alert("Login successful!");
 
-      alert("Login successful!");
-
-      if (data.user.role === "admin") {
-        window.location.href = "/admin";
+        if (data.user.role === "admin") {
+          navigate("/admin");
+        } else {
+          navigate("/profile");
+        }
       } else {
-        window.location.href = "/profile";
+        alert(data.message);
       }
-
-    } else {
-      alert(data.message);
+    } catch (error) {
+      console.error(error);
+      alert("Error connecting to server");
     }
-
-  } catch (error) {
-    console.error(error);
-    alert("Error connecting to server");
-  }
-};
+  };
 
   return (
     <section className="auth">
@@ -114,9 +112,9 @@ const handleLogin = async (e) => {
         </div>
 
         <form
-            className="auth__form"
-            onSubmit={isLogin ? handleLogin : handleSignup}
-          >
+          className="auth__form"
+          onSubmit={isLogin ? handleLogin : handleSignup}
+        >
 
           {!isLogin && (
             <div className="form-group">
@@ -126,6 +124,7 @@ const handleLogin = async (e) => {
                 placeholder="Juan Dela Cruz"
                 value={fullname}
                 onChange={(e) => setFullname(e.target.value)}
+                required
               />
             </div>
           )}
@@ -137,6 +136,7 @@ const handleLogin = async (e) => {
               placeholder="your@email.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              required
             />
           </div>
 
@@ -147,6 +147,7 @@ const handleLogin = async (e) => {
               placeholder="••••••••"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              required
             />
           </div>
 
@@ -158,6 +159,7 @@ const handleLogin = async (e) => {
                 placeholder="••••••••"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
+                required
               />
             </div>
           )}
