@@ -1,16 +1,43 @@
-# React + Vite
+# Ivory Lounge & Bar Web Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Project Description
 
-Currently, two official plugins are available:
+Ivory Lounge & Bar Web Management System is a web-based reservation and
+management system developed using React (Vite), PHP, and MySQL.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Installation
 
-## React Compiler
+### Requirements
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+-   Node.js (v18+)
+-   XAMPP (Apache & MySQL)
+-   Visual Studio Code
 
-## Expanding the ESLint configuration
+### Install
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1.  Clone or download the repository.
+2.  Run `npm install`.
+3.  Create a MySQL database named `wms_ivory`.
+4.  Import the provided SQL file.
+5.  Configure `api/db.php`.
+6.  Run `npm run dev`.
+7.  For production, run `npm run build` and upload the `dist` folder and
+    `api` folder.
+
+## Features
+
+-   User Login/Register
+-   Table Reservation
+-   Occasion Booking
+-   Venue Booking
+-   Payment Proof Upload
+-   Admin Dashboard
+-   Notifications
+-   Analytics
+
+## Technologies
+
+-   React (Vite)
+-   PHP
+-   MySQL
+-   HTML/CSS/JavaScript
