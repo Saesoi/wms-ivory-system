@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 27, 2026 at 04:44 PM
+-- Generation Time: Jun 29, 2026 at 02:00 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -90,7 +90,21 @@ CREATE TABLE `notifications` (
 INSERT INTO `notifications` (`id`, `user_id`, `title`, `message`, `is_read`, `created_at`) VALUES
 (22, 4, 'Reservation Approved', 'Your reservation has been approved.', 0, '2026-06-26 14:43:54'),
 (23, 4, 'Reservation Approved', 'Your reservation has been approved.', 0, '2026-06-26 14:50:28'),
-(24, 4, 'Reservation Rejected', 'Your reservation has been rejected.', 0, '2026-06-26 14:52:09');
+(24, 4, 'Reservation Rejected', 'Your reservation has been rejected.', 0, '2026-06-26 14:52:09'),
+(25, 4, 'Reservation Approved', 'Your reservation has been approved.', 0, '2026-06-28 23:35:34'),
+(26, 4, 'Reservation Approved', 'Your reservation has been approved.', 0, '2026-06-28 23:35:34'),
+(27, 4, 'Reservation Approved', 'Your reservation has been approved.', 0, '2026-06-28 23:35:36'),
+(28, 4, 'Reservation Approved', 'Your reservation has been approved.', 0, '2026-06-28 23:35:36'),
+(29, 4, 'Reservation Rejected', 'Your reservation has been rejected.', 0, '2026-06-28 23:35:36'),
+(30, 4, 'Reservation Rejected', 'Your reservation has been rejected.', 0, '2026-06-28 23:35:36'),
+(31, 4, 'Reservation Approved', 'Your reservation has been approved.', 0, '2026-06-28 23:35:37'),
+(32, 4, 'Reservation Approved', 'Your reservation has been approved.', 0, '2026-06-28 23:35:37'),
+(33, 4, 'Reservation Rejected', 'Your reservation has been rejected.', 0, '2026-06-28 23:35:38'),
+(34, 4, 'Reservation Rejected', 'Your reservation has been rejected.', 0, '2026-06-28 23:35:38'),
+(35, 4, 'Reservation Rejected', 'Your reservation has been rejected.', 0, '2026-06-28 23:35:39'),
+(36, 4, 'Reservation Rejected', 'Your reservation has been rejected.', 0, '2026-06-28 23:35:39'),
+(37, 4, 'Reservation Approved', 'Your reservation has been approved.', 0, '2026-06-28 23:35:39'),
+(38, 4, 'Reservation Approved', 'Your reservation has been approved.', 0, '2026-06-28 23:35:39');
 
 -- --------------------------------------------------------
 
@@ -109,6 +123,8 @@ CREATE TABLE `reservations` (
   `occasion_type` varchar(100) DEFAULT NULL,
   `event_description` text DEFAULT NULL,
   `special_requests` text DEFAULT NULL,
+  `payment_proof` varchar(255) DEFAULT NULL,
+  `payment_status` varchar(20) NOT NULL DEFAULT 'Pending',
   `status` varchar(20) DEFAULT 'Pending',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `capacity_status` varchar(50) DEFAULT 'Within Limit'
@@ -118,28 +134,28 @@ CREATE TABLE `reservations` (
 -- Dumping data for table `reservations`
 --
 
-INSERT INTO `reservations` (`id`, `user_id`, `reservation_type`, `reservation_date`, `reservation_time`, `guest_count`, `table_preference`, `occasion_type`, `event_description`, `special_requests`, `status`, `created_at`, `capacity_status`) VALUES
-(2, 3, 'table', '2026-06-22', '5:00 PM', '5-6 guests', 'Outdoor', '', '', '', 'Approved', '2026-06-22 06:29:45', 'Within Limit'),
-(7, 3, 'table', '2026-06-23', '5:00 PM', '1-2 guests', 'Window Seat', '', '', '', 'Pending', '2026-06-23 07:58:59', 'Within Limit'),
-(15, 3, 'table', '2026-06-25', '7:00 PM', '7+ guests', 'VIP Area', '', '', '', 'Cancelled', '2026-06-23 13:20:54', 'Within Limit'),
-(16, 2, 'table', '2026-06-24', '5:00 PM', '7+ guests', 'VIP Area', '', '', '', 'Pending', '2026-06-24 15:16:25', 'Within Limit'),
-(17, 2, 'table', '2026-06-24', '5:00 PM', '7+ guests', 'VIP Area', '', '', '', 'Pending', '2026-06-24 15:17:53', 'Within Limit'),
-(18, 2, 'table', '2026-06-24', '5:00 PM', '7+ guests', 'VIP Area', '', '', '', 'Pending', '2026-06-24 15:18:34', 'Within Limit'),
-(19, 2, 'table', '2026-06-20', '5:00 PM', '1-2 guests', 'No preference', '', '', '', 'Pending', '2026-06-24 15:19:56', 'Within Limit'),
-(20, 3, 'table', '2026-06-20', '5:00 PM', '1-2 guests', 'No preference', '', '', '', 'Pending', '2026-06-24 15:20:23', 'Within Limit'),
-(21, 3, 'table', '2026-06-25', '7:00 PM', '7+ guests', 'Window Seat', '', '', '', 'Pending', '2026-06-24 15:20:41', 'Within Limit'),
-(22, 3, 'table', '2026-06-25', '7:00 PM', '7+ guests', 'Window Seat', '', '', '', 'Pending', '2026-06-24 15:21:38', 'Within Limit'),
-(23, 3, 'table', '2026-06-20', '5:00 PM', '1-2 guests', 'No preference', '', '', '', 'Pending', '2026-06-24 15:29:41', 'Within Limit'),
-(24, 3, 'table', '2026-06-25', '7:00 PM', '7+ guests', 'VIP Area', '', '', '', 'Pending', '2026-06-24 15:30:28', 'Within Limit'),
-(25, 2, 'occasion', '2026-06-26', '5:00 PM', '30+ guests', '', 'Birthday', 'test', 'test', 'Pending', '2026-06-24 15:32:29', 'Within Limit'),
-(26, 4, 'table', '2026-06-20', '8:00 PM', '7+ guests', 'Window Seat', '', '', '', 'Approved', '2026-06-25 14:45:09', 'Within Limit'),
-(27, 4, 'table', '2026-06-20', '5:00 PM', '1-2 guests', 'VIP Area', '', '', '', 'Approved', '2026-06-25 14:46:09', 'Within Limit'),
-(28, 4, 'table', '2026-06-20', '5:00 PM', '1-2 guests', 'No preference', '', '', '', 'Approved', '2026-06-26 14:00:08', 'Within Limit'),
-(29, 4, 'table', '2026-06-20', '5:00 PM', '3-4 guests', 'Outdoor', '', '', '', 'Approved', '2026-06-26 14:26:36', 'Within Limit'),
-(30, 4, 'occasion', '2026-06-20', '5:00 PM', '30+ guests', '', 'Birthday', '', '', 'Approved', '2026-06-26 14:40:24', 'Within Limit'),
-(31, 4, 'venue', '2026-06-20', '', '20 persons', '', '', '', '', 'Approved', '2026-06-26 14:43:15', 'Within Limit'),
-(32, 4, 'occasion', '2026-06-20', '5:00 PM', '3-10 guests', '', 'Wedding', '', '', 'Approved', '2026-06-26 14:49:57', 'Within Limit'),
-(33, 4, 'table', '2026-06-20', '5:00 PM', '7+ guests', 'No preference', '', '', '', 'Rejected', '2026-06-26 14:51:41', 'Within Limit');
+INSERT INTO `reservations` (`id`, `user_id`, `reservation_type`, `reservation_date`, `reservation_time`, `guest_count`, `table_preference`, `occasion_type`, `event_description`, `special_requests`, `payment_proof`, `payment_status`, `status`, `created_at`, `capacity_status`) VALUES
+(2, 3, 'table', '2026-06-22', '5:00 PM', '5-6 guests', 'Outdoor', '', '', '', NULL, 'Pending', 'Approved', '2026-06-22 06:29:45', 'Within Limit'),
+(7, 3, 'table', '2026-06-23', '5:00 PM', '1-2 guests', 'Window Seat', '', '', '', NULL, 'Pending', 'Pending', '2026-06-23 07:58:59', 'Within Limit'),
+(15, 3, 'table', '2026-06-25', '7:00 PM', '7+ guests', 'VIP Area', '', '', '', NULL, 'Pending', 'Cancelled', '2026-06-23 13:20:54', 'Within Limit'),
+(16, 2, 'table', '2026-06-24', '5:00 PM', '7+ guests', 'VIP Area', '', '', '', NULL, 'Pending', 'Pending', '2026-06-24 15:16:25', 'Within Limit'),
+(17, 2, 'table', '2026-06-24', '5:00 PM', '7+ guests', 'VIP Area', '', '', '', NULL, 'Pending', 'Pending', '2026-06-24 15:17:53', 'Within Limit'),
+(18, 2, 'table', '2026-06-24', '5:00 PM', '7+ guests', 'VIP Area', '', '', '', NULL, 'Pending', 'Pending', '2026-06-24 15:18:34', 'Within Limit'),
+(19, 2, 'table', '2026-06-20', '5:00 PM', '1-2 guests', 'No preference', '', '', '', NULL, 'Pending', 'Pending', '2026-06-24 15:19:56', 'Within Limit'),
+(20, 3, 'table', '2026-06-20', '5:00 PM', '1-2 guests', 'No preference', '', '', '', NULL, 'Pending', 'Pending', '2026-06-24 15:20:23', 'Within Limit'),
+(21, 3, 'table', '2026-06-25', '7:00 PM', '7+ guests', 'Window Seat', '', '', '', NULL, 'Pending', 'Pending', '2026-06-24 15:20:41', 'Within Limit'),
+(22, 3, 'table', '2026-06-25', '7:00 PM', '7+ guests', 'Window Seat', '', '', '', NULL, 'Pending', 'Pending', '2026-06-24 15:21:38', 'Within Limit'),
+(23, 3, 'table', '2026-06-20', '5:00 PM', '1-2 guests', 'No preference', '', '', '', NULL, 'Pending', 'Pending', '2026-06-24 15:29:41', 'Within Limit'),
+(24, 3, 'table', '2026-06-25', '7:00 PM', '7+ guests', 'VIP Area', '', '', '', NULL, 'Pending', 'Pending', '2026-06-24 15:30:28', 'Within Limit'),
+(25, 2, 'occasion', '2026-06-26', '5:00 PM', '30+ guests', '', 'Birthday', 'test', 'test', NULL, 'Pending', 'Pending', '2026-06-24 15:32:29', 'Within Limit'),
+(26, 4, 'table', '2026-06-20', '8:00 PM', '7+ guests', 'Window Seat', '', '', '', NULL, 'Pending', 'Approved', '2026-06-25 14:45:09', 'Within Limit'),
+(27, 4, 'table', '2026-06-20', '5:00 PM', '1-2 guests', 'VIP Area', '', '', '', NULL, 'Pending', 'Approved', '2026-06-25 14:46:09', 'Within Limit'),
+(28, 4, 'table', '2026-06-20', '5:00 PM', '1-2 guests', 'No preference', '', '', '', NULL, 'Pending', 'Approved', '2026-06-26 14:00:08', 'Within Limit'),
+(29, 4, 'table', '2026-06-20', '5:00 PM', '3-4 guests', 'Outdoor', '', '', '', NULL, 'Pending', 'Approved', '2026-06-26 14:26:36', 'Within Limit'),
+(30, 4, 'occasion', '2026-06-20', '5:00 PM', '30+ guests', '', 'Birthday', '', '', NULL, 'Pending', 'Approved', '2026-06-26 14:40:24', 'Within Limit'),
+(31, 4, 'venue', '2026-06-20', '', '20 persons', '', '', '', '', NULL, 'Pending', 'Approved', '2026-06-26 14:43:15', 'Within Limit'),
+(32, 4, 'occasion', '2026-06-20', '5:00 PM', '3-10 guests', '', 'Wedding', '', '', NULL, 'Pending', 'Approved', '2026-06-26 14:49:57', 'Within Limit'),
+(34, 2, 'table', '2026-06-20', '5:00 PM', '1-2 guests', 'No preference', '', '', '', 'uploads/1782687200_payment.jpeg', 'Verified', 'Pending', '2026-06-28 22:53:20', 'Within Limit');
 
 -- --------------------------------------------------------
 
@@ -251,13 +267,13 @@ ALTER TABLE `capacity_settings`
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `reservations`
 --
 ALTER TABLE `reservations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `restaurant_tables`

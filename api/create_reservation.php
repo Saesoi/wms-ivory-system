@@ -6,10 +6,34 @@ header("Content-Type: application/json");
 
 include "db.php";
 
-$data = json_decode(
-    file_get_contents("php://input"),
-    true
-);
+$data = $_POST;
+
+$paymentProofPath = "";
+
+if (isset($_FILES["payment_proof"])) {
+
+    $uploadDir = "uploads/";
+
+    if (!is_dir($uploadDir)) {
+        mkdir($uploadDir, 0777, true);
+    }
+
+    $filename =
+        time() . "_" .
+        basename($_FILES["payment_proof"]["name"]);
+
+    $targetFile =
+        $uploadDir . $filename;
+
+    if (move_uploaded_file(
+        $_FILES["payment_proof"]["tmp_name"],
+        $targetFile
+    )) {
+
+        $paymentProofPath = $targetFile;
+
+    }
+}
 
 if (!$data) {
     echo json_encode([
@@ -139,25 +163,29 @@ if ($capacity) {
 }
 
 $stmt = $conn->prepare(
-"INSERT INTO reservations
+"
+INSERT INTO reservations
 (
-user_id,
-reservation_type,
-reservation_date,
-reservation_time,
-guest_count,
-table_preference,
-occasion_type,
-event_description,
-special_requests,
-status
+    user_id,
+    reservation_type,
+    reservation_date,
+    reservation_time,
+    guest_count,
+    table_preference,
+    occasion_type,
+    event_description,
+    special_requests,
+    payment_proof,
+    payment_status,
+    status
 )
 VALUES
-(?,?,?,?,?,?,?,?,?,?)"
+(?,?,?,?,?,?,?,?,?,?,?,?)
+"
 );
 
 $stmt->bind_param(
-"isssssssss",
+"isssssssssss",
 
 $data["user_id"],
 $data["reservation_type"],
@@ -168,8 +196,9 @@ $data["table_preference"],
 $data["occasion_type"],
 $data["event_description"],
 $data["special_requests"],
+$paymentProofPath,
+"Pending",
 $data["status"]
-
 );
 
 if ($stmt->execute()) {

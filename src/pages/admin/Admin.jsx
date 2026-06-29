@@ -211,6 +211,40 @@ export default function Admin() {
       }
   };
 
+  const updatePaymentStatus = async (id, payment_status) => {
+
+  const response = await fetch(
+    "/api/update_payment_status.php",
+    {
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify({
+        id,
+        payment_status
+      })
+    }
+  );
+
+  const result = await response.json();
+
+  if(result.success){
+
+    setReservations(prev =>
+      prev.map(r =>
+        r.id===id
+          ? {...r,payment_status}
+          : r
+      )
+    );
+
+    alert("Payment updated.");
+
+  }
+
+};
+
   const addTable = () => {
     fetch(
       "/api/add_table.php",
@@ -574,6 +608,7 @@ export default function Admin() {
           className="dash-nav-item"
           style={{
             marginTop: "auto",
+            position: "absolute",
             bottom: "20px",
             width: "220px"
           }}
@@ -721,6 +756,46 @@ export default function Admin() {
             {" "}
             {selectedReservation.special_requests}
           </p>
+
+          <h4>Proof of Payment</h4>
+          {selectedReservation.payment_proof ? (
+            <img
+              src={`/api/${selectedReservation.payment_proof}`}
+              alt="Receipt"
+              style={{
+                width: "100%",
+                maxWidth: "350px",
+                borderRadius: "8px",
+                marginBottom: "20px"
+              }}
+            />
+          ) : (
+            <p>No receipt uploaded.</p>
+          )}
+          <div className="payment-actions">
+            <button
+            onClick={() =>
+            updatePaymentStatus(
+            selectedReservation.id,
+            "Verified"
+            )
+            }
+            >
+            Verify Payment
+            </button>
+
+            <button
+            onClick={() =>
+            updatePaymentStatus(
+            selectedReservation.id,
+            "Rejected"
+            )
+            }
+            >
+            Reject Payment
+            </button>
+
+          </div>
 
           <button
             className="btn-primary"
@@ -1304,6 +1379,7 @@ function Reservations({
               <th>Type</th>
               <th>Date & Time</th>
               <th>Guests</th>
+              <th>Payment</th>
               <th>Status</th>
               <th>Actions</th>
             </tr>
@@ -1326,14 +1402,22 @@ function Reservations({
                 </td>
 
                 <td>{r.guest_count}</td>
-
-                <td>
-                  <span
-                    className={`badge badge-${r.status.toLowerCase()}`}
-                  >
-                    {r.status}
-                  </span>
-                </td>
+                  <td>
+                    <span
+                      className={`badge badge-${r.payment_status
+                        .toLowerCase()
+                        .replace(" ", "-")}`}
+                    >
+                      {r.payment_status}
+                    </span>
+                  </td>
+                  <td>
+                    <span
+                      className={`badge badge-${r.status.toLowerCase()}`}
+                    >
+                      {r.status}
+                    </span>
+                  </td>
 
                 <td>
                   <div className="action-btns">
@@ -1367,15 +1451,10 @@ function Reservations({
                   </div>
                 </td>
               </tr>
-
             ))}
-
           </tbody>
-
         </table>
-
       </div>
-
     </div>
   );
 }

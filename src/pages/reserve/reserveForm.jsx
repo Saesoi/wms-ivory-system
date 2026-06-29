@@ -306,6 +306,22 @@ export default function Reservation() {
               <textarea name="request" value={occasion.request} onChange={handleOccasionChange} />
             </div>
 
+            <div className="field">
+              <label>PROOF OF DOWNPAYMENT (MINIMUM ₱1,000)</label>
+
+              <input
+                type="file"
+                accept="image/*"
+                onChange={(e) =>
+                  setPaymentProof(e.target.files[0])
+                }
+              />
+
+              <small className="upload-note">
+                Upload your GCash, Maya, Bank Transfer, or other payment receipt.
+              </small>
+            </div>
+
             <button
               className="confirm-btn"
               onClick={() =>
@@ -349,6 +365,22 @@ export default function Reservation() {
               <textarea name="description" value={venue.description} onChange={handleVenueChange} />
             </div>
 
+            <div className="field">
+              <label>PROOF OF DOWNPAYMENT (MINIMUM ₱1,000)</label>
+
+              <input
+                type="file"
+                accept="image/*"
+                onChange={(e) =>
+                  setPaymentProof(e.target.files[0])
+                }
+              />
+
+              <small className="upload-note">
+                Upload your GCash, Maya, Bank Transfer, or other payment receipt.
+              </small>
+            </div>
+            
             <button
               className="confirm-btn"
               onClick={() =>
