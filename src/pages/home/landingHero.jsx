@@ -5,7 +5,7 @@ export default function LandingHero() {
   return(
     <div className='hero'>
       <Hero 
-        eyebrow="— EST. 2024 · QUEZON CITY" 
+        eyebrow="— EST. 2024 · PASIG CITY" 
         title={
           <>  
            Where Every <br /><span className='gold'>Night</span>  <br /> Becomes a <br /> Memory
