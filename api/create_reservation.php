@@ -184,6 +184,8 @@ VALUES
 "
 );
 
+$paymentStatus = "Pending";
+
 $stmt->bind_param(
 "isssssssssss",
 
@@ -197,7 +199,7 @@ $data["occasion_type"],
 $data["event_description"],
 $data["special_requests"],
 $paymentProofPath,
-"Pending",
+$paymentStatus,
 $data["status"]
 );
 
